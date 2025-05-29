@@ -1,6 +1,7 @@
 
 import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { createPortal } from 'react-dom';
+import Button from './Button.jsx';
 
 const ModalMessage = forwardRef(function ModalMessage({ children, buttonCaption }, ref) {
     const dialog = useRef();
@@ -16,8 +17,8 @@ const ModalMessage = forwardRef(function ModalMessage({ children, buttonCaption 
     return createPortal(
         <dialog ref={dialog} className="backdrop:bg-stone-900/90 p-4 rounded-md shadow-md">
             {children}
-            <form method='dialog'>
-                <button>{!buttonCaption ? 'Close' : buttonCaption}</button>
+            <form method='dialog' className="mt-4 text-right">
+                <Button>{!buttonCaption ? 'Close' : buttonCaption}</Button>
             </form>
         </dialog>,
         document.getElementById('modal-root'));
